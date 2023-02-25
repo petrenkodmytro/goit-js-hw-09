@@ -10,10 +10,13 @@
   flex-direction: column;
   justify-content: center;
   text-align: center;
+  width: 80px;
   padding: 10px;
 }
 .value {
   font-size: 35px;
+  background-color: azure;
+  border-radius: 10px;
 }
 .label {
   color: rgb(28, 195, 28);

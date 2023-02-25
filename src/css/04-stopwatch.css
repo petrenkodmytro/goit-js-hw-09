@@ -3,7 +3,7 @@
   margin-top: 50px;
   display: flex;
   justify-content: center;
-  gap: 50px;
+  gap: 20px;
 }
 .field {
   display: flex;
@@ -11,9 +11,12 @@
   justify-content: center;
   text-align: center;
   padding: 10px;
+  width: 80px;
 }
 .value {
   font-size: 35px;
+  background-color: azure;
+  border-radius: 10px;
 }
 .label {
   color: rgb(28, 195, 28);
