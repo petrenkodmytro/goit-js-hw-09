@@ -46,6 +46,7 @@ function CheckDate(selectedDates) {
 function onStartTimerClick() {
   
   const timerId = setInterval(() => {
+    // деактивація кнопки старта
     btnStartRef.disabled = true;
     // console.log(inputDate.value);
     const startTime = new Date(inputDate.value).getTime();
