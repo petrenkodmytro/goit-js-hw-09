@@ -81,11 +81,12 @@ function addLeadingZero(value) {
 }
 
 class Timer {
-  constructor({ selector, start = 0 }) {
+  constructor(selector) {
     this.parent = document.querySelector(selector);
-    this.value = start;
+    this.value = 0;
 
     this.render();
+
     this.stopButton = this.parent.querySelector('.btn-stop');
     this.startButton = this.parent.querySelector('.btn-start');
     this.text = this.parent.querySelector('.text');
@@ -97,14 +98,14 @@ class Timer {
   }
 
   render() {
-    this.parent.innerHTML = '';
-    const { days, hours, minutes, seconds, miliseconds } = convertMs(this.value);
-    this.parent.insertAdjacentHTML('beforeend', getTemplateTimer({ days, hours, minutes, seconds, miliseconds }));
-  }
-
-  incrementValue() {
-    this.value++;
-    this.text.textContent = this.value;
+    // this.parent.innerHTML = '';
+    const { days, hours, minutes, seconds, miliseconds } = convertMs(
+      this.value
+    );
+    this.parent.insertAdjacentHTML(
+      'beforeend',
+      getTemplateTimer({ days, hours, minutes, seconds, miliseconds })
+    );
   }
 
   start() {
@@ -112,9 +113,14 @@ class Timer {
 
     this.startButton.disabled = true;
     this.stopButton.disabled = false;
+    const startTime = Date.now();
     this.timerId = setInterval(() => {
-      this.incrementValue();
-    }, 1000);
+      const currentTime = Date.now();
+      let elapsedTime = currentTime - startTime;
+      const { days, hours, minutes, seconds, miliseconds } =
+        convertMs(elapsedTime);
+      this.text.textContent = `${days}:${hours}:${minutes}:${seconds}:${miliseconds}`;
+    }, 10);
   }
 
   stop() {
@@ -125,4 +131,4 @@ class Timer {
   }
 }
 // створення екземпляра class Timer
-const timer1 = new Timer({ selector: '.timer' });
+const timer1 = new Timer('.timer');
