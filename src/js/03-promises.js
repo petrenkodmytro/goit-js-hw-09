@@ -6,10 +6,11 @@ form.addEventListener('submit', onCreatePromiseSubmit);
 
 function onCreatePromiseSubmit(e) {
   e.preventDefault();
-
+  // деструктуризація елементів форми
   const { delay, step, amount } = form.elements;
-
+  // цикл для створення необхідної кіл-ті функцій
   for (let i = 1; i <= Number(amount.value); i += 1) {
+    // затримка, що враховує першу затримку (delay), введену користувачем, і крок (step).
     let delayOfPromise = Number(delay.value) + i * Number(step.value);
 
     createPromise(i, delayOfPromise)
@@ -28,6 +29,7 @@ function onCreatePromiseSubmit(e) {
 
 function createPromise(position, delay) {
   return new Promise((resolve, reject) => {
+    // генерація умови true або false для виконання промісу
     const shouldResolve = Math.random() > 0.3;
     setTimeout(() => {
       if (shouldResolve) {
