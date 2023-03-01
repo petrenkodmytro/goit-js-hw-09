@@ -2,7 +2,7 @@ const body = document.querySelector('body');
 const btnStartRef = document.querySelector('button[ data-start]');
 const btnStopRef = document.querySelector('button[ data-stop]');
 
-intervalId = null;
+let intervalId = null;
 btnStopRef.disabled = true; // console.log(btnStartRef.attributes);
 
 btnStartRef.addEventListener('click', onStartChangeColor);
