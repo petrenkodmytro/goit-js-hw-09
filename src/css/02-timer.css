@@ -1,9 +1,13 @@
+.container{
+  width: 400px;
+  text-align: center;
+}
 .timer {
   background-color: rgb(220, 246, 246);
   margin-top: 50px;
   display: flex;
   justify-content: center;
-  gap: 50px;
+  gap: 30px;
 }
 .field {
   display: flex;

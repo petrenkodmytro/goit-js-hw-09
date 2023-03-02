@@ -1,23 +1,30 @@
-img{
+.container {
   margin: 0 auto;
+  width: 400px;
+  text-align: center;
+}
+img {
+  margin: 0 auto;
+  max-width: 100%;
 }
 .timer {
   background-color: rgb(220, 246, 246);
   margin-top: 50px;
   display: flex;
   justify-content: center;
-  gap: 20px;
+  gap: 10px;
 }
 .field {
   display: flex;
   flex-direction: column;
+  gap: 5px;
   justify-content: center;
   text-align: center;
-  padding: 10px;
+  padding: 5px;
   width: 80px;
 }
 .value {
-  font-size: 35px;
+  font-size: 25px;
   background-color: azure;
   border-radius: 10px;
 }
