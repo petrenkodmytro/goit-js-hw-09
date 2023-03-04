@@ -4,6 +4,9 @@ const months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
 const btnRef = document.querySelector('.js-btn');
 const input = document.getElementById('data-input');
+const yearsRef = document.getElementById('years');
+const monthRef = document.getElementById('months');
+const daysRef = document.getElementById('days');
 
 btnRef.addEventListener('click', onAgeCalculateClick);
 
@@ -41,7 +44,7 @@ function onAgeCalculateClick() {
     birthMonth -= 1;
     let day = months[currentMonth - 1];
     console.log(day);
-    birthDate = day + currentDate - birthDetails.date; // 3-corected day
+    birthDate = day + currentDate - birthDetails.date;
     if (birthMonth < 0) {
       birthMonth = 11;
       birthYear -= 1;
@@ -50,6 +53,7 @@ function onAgeCalculateClick() {
 
   displayResult(birthYear, birthMonth, birthDate);
 }
+
 // проверка на дату из будущего
 function CheckDate(date) {
   if (date >= new Date()) {
@@ -64,11 +68,11 @@ function leapCheckerYear(year) {
   } else {
     months[1] = 28;
   }
-  // console.log(year, months[1]);
 }
 
+// рендер інтерфейсу
 function displayResult(bYear, bMonth, bDay) {
-  document.getElementById('years').textContent = bYear;
-  document.getElementById('months').textContent = bMonth;
-  document.getElementById('days').textContent = bDay;
+  yearsRef.textContent = bYear;
+  monthRef.textContent = bMonth;
+  daysRef.textContent = bDay;
 }
