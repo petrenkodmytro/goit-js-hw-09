@@ -6,7 +6,7 @@ seachFormRef.addEventListener('submit', onSeachPokemonSubmit);
 function onSeachPokemonSubmit(e) {
   e.preventDefault();
   cardRef.innerHTML = '';
-  const seachValue = seachFormRef.elements.query.value;
+  const seachValue = seachFormRef.elements.query.value.trim();
   fetchPokemon(seachValue)
     .then(renderPokemonCard)
     .catch(error => {
