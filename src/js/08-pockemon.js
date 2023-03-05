@@ -20,7 +20,7 @@ function onSeachPokemonSubmit(e) {
 
 // функция принесла и распарсила промис с данными
 function fetchPokemon(pokemonId) {
-  return fetch(`http://pokeapi.co/api/v2/pokemon/${pokemonId}`).then(
+  return fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`).then(
     response => {
       return response.json();
     }
