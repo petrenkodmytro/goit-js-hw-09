@@ -1,0 +1,23 @@
+body {
+  background-color: azure;
+}
+.form {
+  width: 380px;
+  padding: 10px;
+  margin: 0 auto;
+  text-align: center;
+  border: solid 1px rgb(133, 233, 233);
+}
+.btn {
+  margin-top: 20px;
+}
+.js-card-container {
+  width: 380px;
+  padding: 10px;
+  margin: 10px auto;
+  text-align: center;
+  border: solid 1px rgb(133, 233, 233);
+}
+img{
+ display: inline-block;
+}
