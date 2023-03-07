@@ -2,6 +2,7 @@ body {
   font-family: sans-serif;
   background-color: azure;
 }
+
 .form {
   text-align: center;
 }
@@ -27,12 +28,18 @@ body {
   flex-wrap: wrap;
   gap: 10px;
 }
+
 .article-card {
   width: 30%;
   text-align: center;
   border-radius: 15px;
   background-color: beige;
   padding: 20px;
+}
+@media screen and (max-width: 770px) {
+  .article-card {
+    width: 100%;
+  }
 }
 .article-img {
   width: 100%;

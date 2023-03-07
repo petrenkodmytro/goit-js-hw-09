@@ -1,3 +1,19 @@
+const YOUR_API_KEY = 'ea323ce12d5643248c09e504b34a1936';
+// import { NewsAPI } from 'newsapi';
+// const NewsAPI = require('newsapi');
+// // const newsapi = new NewsAPI(YOUR_API_KEY);
+// const newsapi = new NewsAPI(YOUR_API_KEY, {
+//   corsProxyUrl: 'https://newsapi.org/',
+// });
+// console.log(newsapi);
+// newsapi.v2
+//   .everything({
+//     q: 'cat',
+//   })
+//   .then(response => {
+//     console.log(response);
+//   });
+
 import Notiflix from 'notiflix';
 const seachFormRef = document.querySelector('.js-seach-form');
 const newsWrapperRef = document.querySelector('.js-news-container');
@@ -28,15 +44,15 @@ function onSeachNews(e) {
 }
 
 // функция принесла и распарсила промис с данными
-const options = {
-  headers: {
-    'X-Api-Key': 'ea323ce12d5643248c09e504b34a1936',
-  },
-};
+// const options = {
+//   headers: {
+//     'X-Api-Key': 'ea323ce12d5643248c09e504b34a1936',
+//   },
+// };
 
 function fetchData(query) {
-  const URL = `https://newsapi.org/v2/everything?q=${query}`;
-  return fetch(URL, options).then(response => response.json());
+  const URL = `https://newsapi.org/v2/everything?q=${query}&apiKey=ea323ce12d5643248c09e504b34a1936`;
+  return fetch(URL).then(response => response.json());
 }
 
 // функция создания разметки
