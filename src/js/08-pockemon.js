@@ -31,8 +31,8 @@ function fetchPokemon(pokemonId) {
 function renderPokemonCard(pokemon) {
   const markup = `<img src="${pokemon.sprites.front_default}" alt="${pokemon.name}">
   <p>Name: <b>${pokemon.name}</b></p>
-  <p>Weight: <b>${pokemon.weight}</b> cm</p>
-  <p>Height: <b>${pokemon.height}</b> kg</p>`;
+  <p>Height: <b>${pokemon.weight}</b> cm</p>
+  <p>Weight: <b>${pokemon.height}</b> kg</p>`;
 
   cardRef.insertAdjacentHTML('beforeend', markup);
 }
