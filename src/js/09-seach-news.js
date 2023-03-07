@@ -1,3 +1,4 @@
+// функция принесла и распарсила промис с данными
 const options = {
   method: 'GET',
   headers: {
@@ -43,13 +44,13 @@ function onSeachNews(e) {
 }
 
 // функция создания разметки
-function cardMarkup({ name, provider, description, ampUrl, image }) {
+function cardMarkup({ title, provider, description, url, image }) {
   return `<div class="article-card">
   <img class="article-img" src="${image.url}" alt="" />
-      <h3 class="article-title">${name}</h3>
-      <h4 class="article-author">${provider.name || 'Anonymus'}</h4>
+      <h3 class="article-title">${title}</h3>
+      <h5 class="article-author">${provider.name || 'Anonymus'}</h5>
       <p class="article-text">${description}</p>
-      <a class="article-link" href="${ampUrl}">Read more</a>
+      <a class="article-link" href="${url}">Read more</a>
   </div>`;
 }
 

@@ -53,3 +53,6 @@ body {
   background-color: antiquewhite;
   padding: 10px;
 }
+.article-author {
+  text-transform: uppercase;
+}
