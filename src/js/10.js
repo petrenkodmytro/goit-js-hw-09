@@ -1,3 +1,12 @@
+//newsapi.org/v2/everything?q=cat&apiKey=ea323ce12d5643248c09e504b34a1936
+https: fetch(
+  'https://newsapi.org/v2/everything?q=cat&apiKey=ea323ce12d5643248c09e504b34a1936'
+)
+  .then(response => response.json())
+  .then(data => {
+    console.log('data', data);
+  });
+
 // const KEY = "fe54e78640174c269f1b558d40009301";
 // fetch(`https://newsapi.org/v2/top-headlines?country=us&apiKey=${KEY}`)
 //   .then((response) => response.json())
