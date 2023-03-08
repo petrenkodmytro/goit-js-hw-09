@@ -1,3 +1,60 @@
+import Notiflix from 'notiflix';
+const seachFormRef = document.querySelector('.js-seach-form');
+const seachMore = document.querySelector('.seach-more');
+const newsWrapperRef = document.querySelector('.js-news-container');
+
+let seachValue = '';
+let pageNumber = 1;
+
+seachFormRef.addEventListener('submit', onSeachNews);
+seachMore.addEventListener('click', onSeachMoreNews);
+
+// функция первого поиска
+function onSeachNews(e) {
+  e.preventDefault();
+
+  newsWrapperRef.innerHTML = '';
+  seachValue = e.currentTarget.elements.news.value.trim();
+  pageNumber = 1;
+
+  fetchData(seachValue, pageNumber)
+    .then(({ totalCount, value }) => {
+      if (value.length === 0) {
+        throw new Error('No data');
+      }
+      renderNewsCard(value);
+      pageNumber += 1;
+      console.log(pageNumber);
+      // console.log(articles);
+    })
+    .catch(error => {
+      newsWrapperRef.innerHTML = '';
+      Notiflix.Report.failure('Attention!!!', 'Not found anything', 'Ok');
+      console.error(error);
+    });
+  // .finally(() => {
+  //   seachFormRef.reset();
+  // });
+}
+
+// функция следующего поиска
+function onSeachMoreNews(params) {
+  fetchData(seachValue, pageNumber)
+    .then(({ totalCount, value }) => {
+      if (value.length === 0) {
+        throw new Error('No data');
+      }
+      renderNewsCard(value);
+      pageNumber += 1;
+      console.log(pageNumber);
+    })
+    .catch(error => {
+      newsWrapperRef.innerHTML = '';
+      Notiflix.Report.failure('Attention!!!', 'Something wrong', 'Ok');
+      console.error(error);
+    });
+}
+
 // функция принесла и распарсила промис с данными
 const options = {
   method: 'GET',
@@ -7,40 +64,16 @@ const options = {
   },
 };
 
-function fetchData(query) {
+function fetchData(query, pageNumber) {
   return fetch(
-    `https://contextualwebsearch-websearch-v1.p.rapidapi.com/api/search/NewsSearchAPI?q=${query}&pageNumber=1&pageSize=20&autoCorrect=true&fromPublishedDate=null&toPublishedDate=null`,
+    `https://contextualwebsearch-websearch-v1.p.rapidapi.com/api/search/NewsSearchAPI?q=${query}&pageNumber=${pageNumber}&pageSize=6&autoCorrect=true`,
     options
-  ).then(response => response.json());
-}
-
-import Notiflix from 'notiflix';
-const seachFormRef = document.querySelector('.js-seach-form');
-const newsWrapperRef = document.querySelector('.js-news-container');
-
-seachFormRef.addEventListener('submit', onSeachNews);
-
-function onSeachNews(e) {
-  e.preventDefault();
-
-  const seachValue = seachFormRef.elements.news.value.trim();
-
-  fetchData(seachValue)
-    .then(({ value }) => {
-      if (value.length === 0) {
-        throw new Error('No data');
-      }
-      renderNewsCard(value);
-      // console.log(articles);
-    })
-    .catch(error => {
-      newsWrapperRef.innerHTML = '';
-      Notiflix.Report.failure('Attention!!!', 'Not found anything', 'Ok');
-      console.error(error);
-    })
-    .finally(() => {
-      seachFormRef.reset();
-    });
+  ).then(response => {
+    if (!response.ok) {
+      throw new Error(response.status);
+    }
+    return response.json();
+  });
 }
 
 // функция создания разметки
@@ -59,33 +92,5 @@ function renderNewsCard(arrayNews) {
   const listNewsMarkup = arrayNews.reduce((acc, article) => {
     return cardMarkup(article) + acc;
   }, '');
-
-  newsWrapperRef.innerHTML = listNewsMarkup;
+  newsWrapperRef.insertAdjacentHTML('beforeend', listNewsMarkup);
 }
-
-// const YOUR_API_KEY = 'ea323ce12d5643248c09e504b34a1936';
-// import { NewsAPI } from 'newsapi';
-// const NewsAPI = require('newsapi');
-// // const newsapi = new NewsAPI(YOUR_API_KEY);
-// const newsapi = new NewsAPI(YOUR_API_KEY, {
-//   corsProxyUrl: 'https://newsapi.org/',
-// });
-// console.log(newsapi);
-// newsapi.v2
-//   .everything({
-//     q: 'cat',
-//   })
-//   .then(response => {
-//     console.log(response);
-//   });
-
-// функция принесла и распарсила промис с данными
-// const options = {
-//   headers: {
-//     'X-Api-Key': 'ea323ce12d5643248c09e504b34a1936',
-//   },
-// };
-// function fetchData(query) {
-//   const URL = `https://newsapi.org/v2/everything?q=${query}&apiKey=ea323ce12d5643248c09e504b34a1936`;
-//   return fetch(URL).then(response => response.json());
-// }

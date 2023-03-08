@@ -20,6 +20,11 @@ body {
   color: #fff;
   cursor: pointer;
 }
+.seach-more{
+  display: block;
+  width: 300px;
+  margin: 20px auto;
+}
 .js-news-container {
   margin-top: 10px;
   display: flex;
