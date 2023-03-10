@@ -1,10 +1,6 @@
-import Notiflix from 'notiflix';
-
 const BASE_URL = 'https://api.openweathermap.org/data/2.5';
-const t = new Date(1678459219);
-console.log(t);
 
-export const fetchCountries = city => {
+const fetchCountries = city => {
   return fetch(
     `${BASE_URL}/weather?q=${city}&appid=e009aff8be670269fac51bd3506bf199&units=metric`
   ).then(response => {
@@ -17,40 +13,34 @@ export const fetchCountries = city => {
   });
 };
 
-import debounce from 'lodash.debounce';
 import Notiflix from 'notiflix';
 
 const seachFormRef = document.querySelector('.js-seach-form');
 
-seachFormRef.addEventListener('submit', onSearchCountryInput);
+seachFormRef.addEventListener('submit', onSearchCitySubmit);
 
-function onSearchCountryInput(e) {
+function onSearchCitySubmit(e) {
   e.preventDefault();
-  const nameCountry = e.currentTarget.elements.city.value.trim();
-  console.log(nameCountry);
+  const city = e.currentTarget.elements.city.value.trim();
+  console.log(city);
 
   // listCountryRef.innerHTML = '';
   // cardCountryRef.innerHTML = '';
 
   // якщо input пустий пошук не виконуємо
-  if (nameCountry === '') {
+  if (city === '') {
+    Notiflix.Notify.info('Please enter name of the city.');
     return;
   }
 
-  fetchCountries(nameCountry)
+  fetchCountries(city)
     .then(data => {
-      // if (countries.length > 10) {
-      //   Notiflix.Notify.info(
-      //     'Too many matches found. Please enter a more specific name.'
-      //   );
-      //   return;
-      // }
-
       // renderPage(countries);
       console.log(data);
     })
     .catch(error => {
-      Notiflix.Notify.failure('Oops, there is no country with that name');
+      Notiflix.Notify.failure('Oops, there is no city with that name');
+      console.log(error);
     });
 }
 // https://openweathermap.org/img/wn/02d@2x.png
