@@ -9,6 +9,29 @@
   box-sizing: border-box;
   line-height: 1.25em;
 }
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+}
+
+ul.weather__list {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+li {
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+/* img{
+  display: block;
+} */
 
 body {
   background-image: url(../image/weather.jpg);
@@ -54,23 +77,26 @@ body {
   border-radius: 25px;
   background-color: rgba(145, 214, 237, 0.6);
   width: 100%;
+  padding: 20px;
 }
-
+.date-day {
+  margin-bottom: 10px;
+}
 .weather-temp {
-  margin: 0;
-  font-weight: 700;
-  font-size: 3em;
+  margin-top: 30px;
+  /* font-weight: 700; */
+  font-size: 30px;
 }
 
-.weather-desc {
+/* .weather-desc {
   margin: 0;
-}
+} */
 
 .info-side {
   position: relative;
   float: left;
   height: 100%;
-  padding-top: 25px;
+  padding-top: 10px;
 }
 
 .today-info {
@@ -154,4 +180,7 @@ body {
   padding: 0.5rem;
   display: flex;
   box-shadow: -3px -3px 15px #fff, 3px 3px 15px #919dcc;
+}
+.city{
+  font-size: 20px;
 }

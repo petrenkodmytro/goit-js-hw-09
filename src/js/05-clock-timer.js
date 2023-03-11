@@ -23,7 +23,7 @@ class Clock {
   }
 
   updateValue() {
-    this.text.textContent = moment().format('DD/MM/YYYY HH:mm:ss');
+    this.text.textContent = moment().format('LLLL');
   }
 
   start() {
