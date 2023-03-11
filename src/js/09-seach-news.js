@@ -25,6 +25,7 @@ function onSeachNews(e) {
       renderNewsCard(value);
       pageNumber += 1;
       console.log(pageNumber);
+      seachMore.classList.remove('visually-hidden');
       // console.log(articles);
     })
     .catch(error => {
