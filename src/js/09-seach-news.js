@@ -2,17 +2,20 @@ import Notiflix from 'notiflix';
 const seachFormRef = document.querySelector('.js-seach-form');
 const seachMore = document.querySelector('.seach-more');
 const newsWrapperRef = document.querySelector('.js-news-container');
+const btnUp = document.querySelector('.up');
 
 let seachValue = '';
 let pageNumber = 1;
+btnUp.style.display = 'none';
 
 seachFormRef.addEventListener('submit', onSeachNews);
 seachMore.addEventListener('click', onSeachMoreNews);
+window.addEventListener('scroll', scrollFunction);
+btnUp.addEventListener('click', topFunction);
 
 // функция первого поиска
 function onSeachNews(e) {
   e.preventDefault();
-
   newsWrapperRef.innerHTML = '';
   seachValue = e.currentTarget.elements.news.value.trim();
   pageNumber = 1;
@@ -94,4 +97,19 @@ function renderNewsCard(arrayNews) {
     return cardMarkup(article) + acc;
   }, '');
   newsWrapperRef.insertAdjacentHTML('beforeend', listNewsMarkup);
+}
+
+// функція скролу
+function scrollFunction() {
+  if (document.body.scrollTop > 30 || document.documentElement.scrollTop > 30) {
+    btnUp.style.display = 'block';
+  } else {
+    btnUp.style.display = 'none';
+  }
+}
+
+// повернення на початок сторінки
+function topFunction() {
+  console.log('ooooo');
+  document.documentElement.scrollTo({ top: 0, behavior: 'smooth' }); // Для Chrome, Firefox, IE и Opera
 }

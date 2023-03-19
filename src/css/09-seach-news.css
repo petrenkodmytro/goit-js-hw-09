@@ -20,7 +20,7 @@ body {
   color: #fff;
   cursor: pointer;
 }
-.seach-more{
+.seach-more {
   display: block;
   width: 300px;
   margin: 20px auto;
@@ -72,4 +72,16 @@ body {
   clip: rect(0 0 0 0);
   clip-path: inset(50%);
   margin: -1px;
+}
+.up {
+  font-size: 30px;
+  position: fixed;
+  bottom: 1.25rem;
+  right: 1.875rem;
+  z-index: 99;
+  width: 6.25rem;
+  height: 6.25rem;
+  border: none;
+  border-radius: 50%;
+  background-color: rgb(118, 243, 73);
 }
