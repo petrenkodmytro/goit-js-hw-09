@@ -13,7 +13,7 @@ const fetchCountries = city => {
   });
 };
 
-import Notiflix from 'notiflix';
+import { Notify, Loading } from 'notiflix';
 import moment from 'moment';
 
 const seachFormRef = document.querySelector('.js-seach-form');
@@ -23,6 +23,7 @@ seachFormRef.addEventListener('submit', onSearchCitySubmit);
 
 function onSearchCitySubmit(e) {
   e.preventDefault();
+  Loading.dots();
   const city = e.currentTarget.elements.city.value.trim().toLowerCase();
   console.log(city);
 
@@ -30,7 +31,7 @@ function onSearchCitySubmit(e) {
 
   // якщо input пустий пошук не виконуємо
   if (city === '') {
-    Notiflix.Notify.info('Please enter name of the city.');
+    Notify.info('Please enter name of the city.');
     return;
   }
 
@@ -40,12 +41,13 @@ function onSearchCitySubmit(e) {
       renderMarkup(data);
     })
     .catch(error => {
-      Notiflix.Notify.failure('Oops, there is no city with that name');
+      Notify.failure('Oops, there is no city with that name');
       renderError();
       console.log(error);
     })
     .finally(() => {
       seachFormRef.reset();
+      Loading.remove();
     });
 }
 

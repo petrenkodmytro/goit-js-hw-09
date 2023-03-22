@@ -1,4 +1,5 @@
 import Notiflix from 'notiflix';
+import Loading from 'notiflix';
 const seachFormRef = document.querySelector('.js-seach-form');
 const seachMore = document.querySelector('.seach-more');
 const newsWrapperRef = document.querySelector('.js-news-container');
@@ -19,6 +20,7 @@ function onSeachNews(e) {
   newsWrapperRef.innerHTML = '';
   seachValue = e.currentTarget.elements.news.value.trim();
   pageNumber = 1;
+  Notiflix.Loading.arrows();
 
   fetchData(seachValue, pageNumber)
     .then(({ totalCount, value }) => {
@@ -35,14 +37,16 @@ function onSeachNews(e) {
       newsWrapperRef.innerHTML = '';
       Notiflix.Report.failure('Attention!!!', 'Not found anything', 'Ok');
       console.error(error);
+    })
+    .finally(() => {
+      Notiflix.Loading.remove();
+      // seachFormRef.reset();
     });
-  // .finally(() => {
-  //   seachFormRef.reset();
-  // });
 }
 
 // функция следующего поиска
 function onSeachMoreNews(params) {
+  Notiflix.Loading.arrows();
   fetchData(seachValue, pageNumber)
     .then(({ totalCount, value }) => {
       if (value.length === 0) {
@@ -56,6 +60,9 @@ function onSeachMoreNews(params) {
       newsWrapperRef.innerHTML = '';
       Notiflix.Report.failure('Attention!!!', 'Something wrong', 'Ok');
       console.error(error);
+    }).finally(() => {
+      Notiflix.Loading.remove();
+      // seachFormRef.reset();
     });
 }
 
