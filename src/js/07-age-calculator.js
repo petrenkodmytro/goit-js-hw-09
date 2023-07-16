@@ -69,6 +69,12 @@ function leapCheckerYear(year) {
     months[1] = 28;
   }
 }
+// или
+// const isLeapYear = year => {
+//   const date = new Date(year, 2, 0); // возвращает последний день феврвля
+//   const days = date.getDate(); // определяем номер дня (количество дней)
+//   return 29 === days; // true or false
+// };
 
 // рендер інтерфейсу
 function displayResult(bYear, bMonth, bDay) {
